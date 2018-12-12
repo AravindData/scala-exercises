@@ -1,0 +1,161 @@
+val x: Int = 1 + 1 // Values cannot be re-assigned.
+
+var y = 1 + 1 // Variables are like values, except you can re-assign them
+y = 3
+
+/*
+ Anonymous function
+ On the left of => is a list of parameters.
+ On the right is an expression involving the parameters.
+ */
+(x: Int) => x + 1
+
+val addOne = (x: Int) => x + 1 // single param
+val add = (x: Int, y: Int) => x + y // multiple param
+val getTheAnswer = () => 42 // no parameter
+
+/*
+  Method: Methods look and behave very similar to functions,
+  but there are a few key differences between them.
+
+  Methods are defined with the def keyword.
+  def is followed by a name, parameter lists, a return type, and a body.
+ */
+
+def add(x: Int, y: Int): Int = x + y
+// ** Notice how the return type is declared after the parameter list and a colon : Int. **
+
+def addThenMultiply(x: Int, y: Int)(multiplier: Int): Int = (x + y) * multiplier
+println(addThenMultiply(1, 2)(3))
+
+// no param
+def name: String = System.getProperty("user.name")
+println("Hello, " + name + "!")
+
+
+def getSquareString(input: Double): String = {
+  val square = input * input
+  square.toString // Scala does have a return keyword, but it’s rarely used
+}
+
+/*
+  Class: You can define classes with the class keyword followed by its name and constructor parameters
+
+  The return type of the method greet is Unit, which says there’s nothing meaningful to return.
+  It’s used similarly to void in Java and C.
+  (A difference is that because every Scala expression must have some value, there is actually a singleton value of
+  type Unit, written (). It carries no information.)
+
+ */
+
+class Greeter(prefix: String, suffix: String) {
+  def greet(name: String): Unit =
+    println(prefix + name + suffix)
+}
+
+val greeter = new Greeter("Hello, ", "!")
+greeter.greet("Scala developer") // Hello, Scala developer!
+
+/*
+  Scala has a special type of class called a “case” class.
+  By default, case classes are ** immutable and compared by value **
+ */
+
+case class Point(x: Int, y: Int)
+
+val point = Point(1, 2)
+val anotherPoint = Point(1, 2)
+val yetAnotherPoint = Point(2, 2)
+
+if (point == anotherPoint) {
+  println(point + " and " + anotherPoint + " are the same.")
+} else {
+  println(point + " and " + anotherPoint + " are different.")
+} // Point(1,2) and Point(1,2) are the same.
+
+if (point == yetAnotherPoint) {
+  println(point + " and " + yetAnotherPoint + " are the same.")
+} else {
+  println(point + " and " + yetAnotherPoint + " are different.")
+} // Point(1,2) and Point(2,2) are different.
+
+/*
+  Objects: Are single instances of their own definitions. You can think of them as singletons of their own classes.
+  You can access an object by referring to its name.
+ */
+
+object IdFactory {
+  private var counter = 0
+  def create(): Int = {
+    counter += 1
+    counter
+  }
+}
+
+val newId: Int = IdFactory.create()
+println(newId) // 1
+val newerId: Int = IdFactory.create()
+println(newerId) // 2
+
+/*
+  Traits: Traits are types containing certain fields and methods. Multiple traits can be combined.
+
+
+ */
+
+trait Greet1 {
+  def greet(name: String): Unit
+}
+
+// Traits can also have default implementations.
+trait Greet2 {
+  def greet(name: String): Unit =
+    println("Hello, " + name + "!")
+}
+
+// You can extend traits with the **extends**e keyword and
+// override an implementation with the **override** keyword.
+
+abstract class DefaultGreeter extends Greet1
+
+/*
+class DefaultGreeter extends Greet1
+Class which extends trait must be declared abstract or implement the function (greet)
+ */
+
+class CustomizableGreeter(prefix: String, postfix: String) extends Greet1 {
+  override def greet(name: String): Unit = {
+    println(prefix + name + postfix)
+  }
+}
+
+val customGreeter = new CustomizableGreeter("How are you, ", "?")
+customGreeter.greet("Scala developer") // How are you, Scala developer?
+
+// Multiple traits can also be extended
+
+// Main Method
+object Main {
+  def main(args: Array[String]): Unit =
+    println("Hello, Scala developer!")
+}
+
+// List of type "Any"
+// https://docs.scala-lang.org/tour/unified-types.html
+
+val list: List[Any] = List(
+  "a string",
+  732,  // an integer
+  'c',  // a character
+  true, // a boolean value
+  () => "an anonymous function returning a string"
+)
+
+/*
+  ** AnyVal vs AnyRef **
+
+  AnyRef - AnyRef represents reference type.  All non-value types are defined as reference types
+           Supertype of all objects
+  Anyval - AnyVal represents value type. Supertype of all values
+ */
+
