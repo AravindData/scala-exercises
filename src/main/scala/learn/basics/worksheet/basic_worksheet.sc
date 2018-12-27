@@ -80,7 +80,8 @@ if (point == yetAnotherPoint) {
 } // Point(1,2) and Point(2,2) are different.
 
 /*
-  Objects: Are single instances of their own definitions. You can think of them as singletons of their own classes.
+  Objects: Are single instances of their own definitions.
+  You can think of them as singletons of their own classes.
   You can access an object by referring to its name.
  */
 
@@ -158,4 +159,43 @@ val list: List[Any] = List(
            Supertype of all objects
   Anyval - AnyVal represents value type. Supertype of all values
  */
+
+
+/*
+  Lazy val:
+
+    val is executed when it is defined whereas a lazy val is executed when it is accessed the first time.
+
+    Like a def, a lazy val is not evaluated until it is invoked. But the result is saved so that subsequent invocations
+    return the saved value. The memoized result takes up space in your data structure, like a val.
+
+    As others have mentioned, the use cases for a lazy val are to defer expensive computations until
+    they are needed and store their results, and to solve certain circular dependencies between values.
+
+    Lazy vals are in fact implemented more or less as memoized defs. You can read about the
+    details of their implementation here:
+ */
+
+var a = { println("a"); 15 }
+lazy val b = { println("b"); a+1 }
+println("-----")
+a = 17
+println("b is: " + b)
+
+/*
+Output of above code is:
+
+x
+-----
+y
+y is: 18
+
+As it can be seen, x is printed when it's initialized,
+but y is not printed when it's initialized in same way
+(I have taken x as var intentionally here - to explain when y gets initialized).
+
+Next when y is called, it's initialized as well as value of last 'x' is
+taken into consideration but not the old one.
+ */
+
 
