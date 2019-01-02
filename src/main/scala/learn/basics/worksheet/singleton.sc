@@ -1,5 +1,8 @@
 /*
+  Object
+
     - An object is a class that has exactly one instance.
+
     - It is created lazily when it is referenced, like a lazy val.
 
     - As a top-level value, an object is a singleton.
@@ -9,7 +12,7 @@
     - An object is a value.
 
     - The definition of an object looks like a class, but uses the keyword object
- */
+*/
 
 object Box
 
@@ -75,6 +78,10 @@ scalaCenterEmail match {
 // instance from a String. We return it as an Option[Email] in case of parsing errors.
 
 
+/*
+  Class and Object
 
+
+ */
 
 

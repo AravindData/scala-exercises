@@ -159,7 +159,14 @@ val list: List[Any] = List(
            Supertype of all objects
   Anyval - AnyVal represents value type. Supertype of all values
  */
+List(5,true)
+// res9: List[AnyVal] = List(5, true)
 
+List("Hi",2,3)
+// res10: List[Any] = List(Hi, 2, 3)
+
+List()
+// res11: List[Nothing] = List()
 
 /*
   Lazy val:

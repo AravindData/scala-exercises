@@ -46,3 +46,20 @@ val message5 = message4.copy(sender = message4.recipient, recipient = "claire@bo
 message5.sender  // travis@washington.us
 message5.recipient // claire@bourgogne.fr
 message5.body  // "Me zo o komz gant ma amezeg"
+
+
+
+case class Person(name: String, age: Int)
+
+val alice   = new Person("Alice", 25)
+val bob     = new Person("Bob", 32)
+val charlie = new Person("Charlie", 32)
+
+for (person <- List(alice, bob, charlie)) {
+  person match {
+    case Person("Alice", 25) => println("Hi Alice!")
+    case Person("Bob", 32) => println("Hi Bob!")
+    case Person(name, age) => println(
+      "Age: " + age + " year, name: " + name + "?")
+  }
+}
