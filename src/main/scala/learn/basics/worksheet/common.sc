@@ -22,3 +22,15 @@ val newSalaries1 = salaries.map(x => x * 2) // List(40000, 140000, 80000)
 // More simplification using underscore
 val newSalaries2 = salaries.map(_ * 2)
 
+/*
+  Match Expression
+ */
+var myVar = "theValue";
+
+myVar match {
+  case "someValue"   => println(myVar + " 1");
+  case "thisValue"   => println(myVar + " 2");
+  case "theValue"    => println(myVar + " 3");
+  case "doubleValue" => println(myVar + " 4");
+}
+

@@ -24,12 +24,47 @@ object Logger {
   Companion Objects:
 
     - An object with the same name as a class is called a companion object.
-
     - Conversely, the class is the object’s companion class.
-
     - A companion class or object can access the private members of its companion.
-
     - Use a companion object for methods and values which are not specific to instances of the companion class.
+
+  Scala classes cannot have static variables or methods.
+  Instead a Scala class can have what is called a singleton object, or sometime a companion object.
+
+  A singleton object (Main) is declared using the object keyword. Here is an example:
+
+  object Main {
+    def sayHi() {
+        println("Hi!");
+    }
+  }
+
+  Main.sayHi();
+
+  Notice how you write the full name of the object before the method name. No object is instantiated.
+  It is like calling a static method in Java, except you are calling the method on a singleton object instead.
+
+    -  A companion object must be defined inside the same source file as the class.
+
+  class Main {
+    def sayHelloWorld() {
+        println("Hello World");
+    }
+  }
+
+  object Main {
+      def sayHi() {
+          println("Hi!");
+      }
+  }
+
+  In this class you can both instantiate Main and call sayHelloWorld() or call the sayHi() method on the
+  companion object directly, like this:
+
+  var aMain : Main = new Main();
+  aMain.sayHelloWorld();
+
+  Main.sayHi();
 */
 
 import scala.math._

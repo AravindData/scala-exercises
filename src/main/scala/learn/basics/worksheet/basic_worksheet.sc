@@ -206,3 +206,48 @@ taken into consideration but not the old one.
  */
 
 
+/*
+  Val Vs Def
+
+  The right hand side of a def definition is evaluated on each use.
+  The right hand side of a val definition is evaluated at the point of the definition itself. Afterwards, the name refers to the value.
+
+  val x = 2
+  val y = square(x)
+
+  For instance, y above refers to 4, not square(2)
+ */
+
+
+/*
+  CALL-BY-NAME AND CALL-BY-VALUE
+
+  The first evaluation strategy is known as call-by-value, the second is is known as call-by-name.
+
+  Both strategies reduce to the same final values as long as he reduced expression consists of pure functions, and
+  both evaluations terminate.
+
+  Call-by-value has the advantage that it evaluates every function argument only once.
+
+  Call-by-name has the advantage that a function argument is not evaluated if the
+  corresponding parameter is unused in the evaluation of the function body.
+
+  Scala normally uses call-by-value.
+ */
+
+/*
+  RETURN keyword
+
+  - Recursive methods need an explicit return type in Scala.
+
+  - For non-recursive methods, the return type is optional.
+ */
+
+/*
+  SEMICOLON
+
+  In Scala, semicolons at the end of lines are in most cases optional.
+  On the other hand, if there are more than one statements on a line, they need to be separated by semicolons
+
+  val y = x + 1; y * y
+ */
